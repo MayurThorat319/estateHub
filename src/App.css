@@ -132,7 +132,7 @@ button {
   background: rgb(255 255 255 / 10%);
 }
 
-.profile-avatar {
+/* .profile-avatar {
   display: grid;
   place-items: center;
   width: 65px;
@@ -144,7 +144,7 @@ button {
   background: #e7d5ff;
   font-size: 19px;
   font-weight: 800;
-}
+} */
 
 .profile-card h3 {
   margin: 0;
