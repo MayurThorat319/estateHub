@@ -1,0 +1,47 @@
+.workspace-panel {
+  margin-top: 24px;
+}
+.workspace-list {
+  display: grid;
+  gap: 12px;
+  margin-top: 20px;
+}
+.workspace-entry {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px;
+  border: 1px solid #eeebf4;
+  border-radius: 10px;
+  background: #fff;
+}
+.workspace-entry p {
+  margin: 5px 0;
+  color: #6b6478;
+  font-size: 12px;
+}
+.workspace-entry small {
+  color: #888296;
+}
+.workspace-grow {
+  flex: 1;
+}
+.workspace-entry select {
+  padding: 8px 10px;
+  border: 1px solid #e8e2f0;
+  border-radius: 7px;
+  background: #fff;
+}
+.chat-compose {
+  display: flex;
+  gap: 10px;
+  margin-top: 18px;
+}
+.chat-compose input {
+  flex: 1;
+  min-width: 0;
+  border: 1px solid #e8e2f0;
+  border-radius: 8px;
+  padding: 12px;
+}

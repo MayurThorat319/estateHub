@@ -1,0 +1,55 @@
+
+.right-sidebar {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  min-height: 650px;
+  padding: 28px 20px;
+  overflow-y: auto;
+  border-left: 1px solid #f0edf5;
+  background: #f8f6ff;
+}
+
+.quick-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.quick-actions button {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid #eeeaf4;
+  border-radius: 9px;
+  color: #252033;
+  background: white;
+  font-size: 19px;
+}
+
+.latest-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin: 34px 0 18px;
+}
+
+.latest-heading h2 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.latest-heading span {
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.latest-list {
+  display: grid;
+  gap: 18px;
+}
+
+/* PROPERTY ITEM */

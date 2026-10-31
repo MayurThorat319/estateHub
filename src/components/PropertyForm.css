@@ -1,0 +1,95 @@
+
+.project-form {
+  margin: 22px 0;
+  padding: 20px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: white;
+}
+
+.form-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.form-heading h3 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.form-heading p {
+  margin: 5px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.close-form {
+  color: var(--muted);
+  background: transparent;
+  font-size: 25px;
+}
+
+.form-fields {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) auto;
+  gap: 10px;
+}
+
+.form-fields input {
+  min-width: 0;
+  padding: 12px;
+  border: 1px solid #e5e1ed;
+  border-radius: 7px;
+  outline-color: var(--purple);
+  font-size: 12px;
+}
+
+/* COMMON PANELS */
+
+/* Native dropdown values/options must be readable in light and dark modes. */
+.dashboard .project-form .form-fields input,
+.dashboard .project-form .form-fields select,
+.dashboard .workspace-entry select {
+  width: 100%;
+  min-width: 0;
+  min-height: 43px;
+  padding: 11px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface-strong);
+  color: var(--text);
+  font: inherit;
+  font-size: 13px;
+  color-scheme: light;
+}
+.dashboard.theme-dark .project-form .form-fields input,
+.dashboard.theme-dark .project-form .form-fields select,
+.dashboard.theme-dark .workspace-entry select { color-scheme: dark; }
+.dashboard .project-form select option,
+.dashboard .workspace-entry select option { background: #fff; color: #24262b; }
+.dashboard.theme-dark .project-form select option,
+.dashboard.theme-dark .workspace-entry select option { background: #28292c; color: #f2f3f4; }
+.dashboard .project-form .form-fields select:focus-visible,
+.dashboard .project-form .form-fields input:focus-visible,
+.dashboard .workspace-entry select:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+.dashboard .project-form .form-fields input::placeholder { color: var(--muted); opacity: 1; }
+.dashboard .project-form .close-form {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  flex: 0 0 32px;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface-strong);
+  color: var(--text);
+  line-height: 1;
+}
+@media (max-width: 600px) { .dashboard .project-form .form-fields { grid-template-columns: minmax(0,1fr); } }

@@ -1,0 +1,412 @@
+
+.panel {
+  min-width: 0;
+  padding: 18px;
+  border: 1px solid #f0edf5;
+  border-radius: 12px;
+  background: white;
+}
+
+.panel-heading,
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.panel-heading h3,
+.donut-panel h3 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.panel-heading span,
+.filter-label {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.section-heading h2 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.section-heading a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 11px;
+}
+
+/* TOP ANALYTICS */
+
+.analytics-grid {
+  display: grid;
+  margin-top: 24px;
+  grid-template-columns:
+    minmax(0, 1.8fr)
+    minmax(140px, 0.9fr)
+    minmax(140px, 0.9fr);
+  gap: 16px;
+}
+
+.revenue-panel {
+  position: relative;
+  min-height: 220px;
+}
+
+.revenue-total {
+  position: absolute;
+  top: 53px;
+  left: 42%;
+  color: #f28b3c;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.revenue-chart {
+  position: relative;
+  height: 125px;
+  margin-top: 20px;
+}
+
+.revenue-chart svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.chart-grid-lines {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.chart-grid-lines span {
+  border-top: 1px dashed #eeeaf3;
+}
+
+.chart-months {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 9px;
+  color: var(--muted);
+  font-size: 9px;
+}
+
+.donut-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 220px;
+}
+
+.donut {
+  display: grid;
+  place-items: center;
+  width: min(120px, 100%);
+  aspect-ratio: 1;
+  height: auto;
+  margin: 12px 0;
+  border-radius: 50%;
+}
+
+.sell-donut {
+  background: conic-gradient(#f28a35 0deg 270deg, #f8e7da 270deg 360deg);
+  transform: rotate(-40deg);
+}
+
+.rent-donut {
+  background: conic-gradient(#4f16d7 0deg 90deg, #eae2f8 90deg 360deg);
+  transform: rotate(-40deg);
+}
+
+.donut > div {
+  display: grid;
+  place-items: center;
+  width: 85px;
+  height: 85px;
+  border-radius: 50%;
+  background: white;
+  transform: rotate(40deg);
+}
+
+.donut strong {
+  font-size: 18px;
+}
+
+.sell-donut strong {
+  color: #ed7b27;
+}
+
+.rent-donut strong {
+  color: #4f16d7;
+}
+
+.donut-panel p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 10px;
+}
+
+/* MIDDLE SECTION */
+
+.middle-grid {
+  display: grid;
+  margin-top: 26px;
+  grid-template-columns:
+    minmax(0, 1.65fr)
+    minmax(220px, 0.9fr);
+  gap: 16px;
+}
+
+.breakdown-panel {
+  min-height: 315px;
+}
+
+.chart-legend {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  margin: 20px 0 5px;
+  color: #686576;
+  font-size: 10px;
+}
+
+.chart-legend span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.chart-legend i {
+  width: 11px;
+  height: 11px;
+  border-radius: 3px;
+}
+
+.legend-rent {
+  background: #eee6fa;
+}
+
+.legend-sell {
+  background: #ffeadc;
+}
+
+.bar-chart {
+  display: flex;
+  height: 205px;
+  gap: 10px;
+}
+
+.bar-y-axis {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 4px 0 22px;
+  color: #777485;
+  font-size: 10px;
+}
+
+.bar-chart-content {
+  flex: 1;
+  min-width: 0;
+  border-bottom: 1px solid #eeeaf3;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 28px,
+    #f0edf4 29px,
+    transparent 30px
+  );
+}
+
+.bar-grid {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-around;
+  height: 100%;
+}
+
+.bar-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 9px;
+  width: 12%;
+  min-width: 0;
+  color: #555262;
+  font-size: 10px;
+}
+
+.bars {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 4px;
+  width: 100%;
+  height: calc(100% - 22px);
+}
+
+.bar {
+  width: 38%;
+  max-width: 18px;
+  border-radius: 5px 5px 0 0;
+}
+
+.rent-bar {
+  background: #eee6fa;
+}
+
+.sell-bar {
+  background: #ffeadc;
+}
+
+.highlight-bar {
+  background: #fa8838;
+}
+
+.chart-caption {
+  margin: 18px 0 0;
+  color: #686576;
+  text-align: center;
+  font-size: 10px;
+}
+
+/* AGENTS */
+
+.agents-panel {
+  min-height: 315px;
+}
+
+.agent-list {
+  display: grid;
+  gap: 18px;
+  margin-top: 22px;
+}
+
+.agent-row {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-width: 0;
+}
+
+.agent-avatar {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  color: white;
+  background: #8761bb;
+  font-size: 9px;
+  font-weight: 700;
+}
+
+.avatar-1 {
+  background: #4b839c;
+}
+.avatar-2 {
+  background: #bd8064;
+}
+.avatar-3 {
+  background: #739a9a;
+}
+.avatar-4 {
+  background: #9a7652;
+}
+
+.agent-info {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+  gap: 4px;
+}
+
+.agent-info strong {
+  overflow: hidden;
+  font-size: 11px;
+  font-weight: 500;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.agent-info span {
+  color: var(--muted);
+  font-size: 9px;
+}
+
+.agent-row > b {
+  color: var(--purple);
+  font-size: 10px;
+  white-space: nowrap;
+}
+
+/* RECENT ACTIVITIES */
+
+.activities-section {
+  margin-top: 26px;
+}
+
+.more-button {
+  color: #5b5668;
+  background: transparent;
+  font-size: 20px;
+}
+
+.table-wrapper {
+  margin-top: 15px;
+  overflow-x: auto;
+}
+
+.activity-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.activity-table th {
+  padding: 13px 10px;
+  border-top: 1px solid #eeeaf3;
+  border-bottom: 1px solid #eeeaf3;
+  color: #777485;
+  font-size: 10px;
+  font-weight: 500;
+}
+
+.activity-table td {
+  padding: 14px 10px;
+  color: #373444;
+  font-size: 10px;
+}
+
+.type-tag {
+  display: inline-block;
+  padding: 5px 9px;
+  border-radius: 20px;
+  font-size: 9px;
+}
+
+.type-tag.rent {
+  color: #7542ba;
+  background: #f0e8fa;
+}
+
+.type-tag.sell {
+  color: #e57a30;
+  background: #fff0e5;
+}
+
+/* RIGHT SIDEBAR */

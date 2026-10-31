@@ -1,0 +1,74 @@
+
+.dashboard-main {
+  width: 100%;
+  min-width: 0;
+  padding: 34px clamp(18px, 2.3vw, 36px);
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding-bottom: 27px;
+  border-bottom: 1px solid #e9e6ef;
+}
+
+.welcome h1 {
+  margin: 0;
+  font-size: 21px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.welcome p {
+  margin: 7px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  width: 200px;
+  padding: 11px 13px;
+  border: 1px solid #eeeaf4;
+  border-radius: 8px;
+  background: white;
+}
+
+.search-box span {
+  font-size: 22px;
+}
+
+.search-box input {
+  width: 100%;
+  min-width: 0;
+  border: 0;
+  outline: none;
+  color: var(--text);
+  font-size: 12px;
+}
+
+.add-button {
+  padding: 12px 17px;
+  border-radius: 8px;
+  color: white;
+  background: linear-gradient(135deg, #793bba, #5918e6);
+  box-shadow: 0 5px 12px rgb(105 50 190 / 18%);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.add-button:hover {
+  filter: brightness(1.08);
+}
+
+/* ADD PROPERTY FORM */

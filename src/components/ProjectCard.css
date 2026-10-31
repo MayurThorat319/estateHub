@@ -1,0 +1,115 @@
+
+.latest-property {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  min-width: 0;
+}
+
+.latest-property-image {
+  width: 76px;
+  height: 84px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.latest-property-info {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  padding-right: 10px;
+}
+
+.latest-property-info h3 {
+  overflow: hidden;
+  margin: 2px 0 5px;
+  font-size: 12px;
+  font-weight: 700;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.latest-property-info p {
+  overflow: hidden;
+  margin: 0 0 7px;
+  color: var(--muted);
+  font-size: 9px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.latest-status {
+  display: block;
+  margin-bottom: 5px;
+  color: #777485;
+  font-size: 9px;
+}
+
+.latest-property-info > strong {
+  display: block;
+  color: #5718d7;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.latest-delete {
+  position: absolute;
+  top: -4px;
+  right: -5px;
+  display: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  color: white;
+  background: #b42318;
+  font-size: 15px;
+  line-height: 1;
+}
+
+.latest-property:hover .latest-delete {
+  display: block;
+}
+
+.empty-message {
+  color: var(--muted);
+  font-size: 12px;
+  text-align: center;
+}
+
+/* RESPONSIVE */
+
+/* Consistent action alignment in every theme and viewport. */
+.dashboard .latest-property-info h3 { padding-right: 0; }
+.dashboard .latest-property-info { padding-right: 66px; }
+.dashboard .property-card-actions {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 5px;
+  z-index: 1;
+}
+.dashboard .property-card-actions .latest-edit,
+.dashboard .property-card-actions .latest-delete {
+  position: static;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  flex: 0 0 28px;
+  padding: 0;
+  opacity: 1;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface-strong);
+  color: var(--text);
+  box-shadow: 0 2px 6px rgba(0,0,0,.05);
+  transition: background .16s ease, color .16s ease;
+}
+.dashboard .property-card-actions .latest-edit:hover { background: var(--accent-wash); color: var(--accent); }
+.dashboard .property-card-actions .latest-delete:hover { background: rgba(207,65,78,.1); color: #d04451; }
+.dashboard .property-card-actions button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
