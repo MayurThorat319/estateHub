@@ -22,7 +22,7 @@ return (<>      {/* LEFT SIDEBAR */}
         <div className="profile-card">
           <div className="profile-avatar">MT</div>
           <h3>Mayur Thorat</h3>
-          <p>Level 6</p>
+          <p></p>
           <button type="button" className="profile-button" onClick={() => setOpenUtility("Profile")}>View Profile →</button>
         </div>
       </aside>

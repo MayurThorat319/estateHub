@@ -18,6 +18,7 @@ const propertySchema = new mongoose.Schema(
       default: "Available",
     },
     image: { type: String, default: "" },
+    agentId: { type: mongoose.Schema.Types.ObjectId, ref: "Agent", default: null },
   },
   opts,
 );
@@ -73,6 +74,8 @@ const activitySchema = new mongoose.Schema(
     availability: { type: String, default: "" },
     price: { type: String, default: "" },
     amount: { type: Number, default: 0, min: 0 },
+    action: { type: String, default: "Legacy record" },
+    agentId: { type: mongoose.Schema.Types.ObjectId, ref: "Agent", default: null },
     date: { type: Date, default: Date.now },
   },
   opts,

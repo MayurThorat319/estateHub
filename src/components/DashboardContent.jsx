@@ -1,9 +1,9 @@
-import { useRef } from 'react';
+import { formatINR } from "../utils/money";
+import PropertyBreakdown from "./PropertyBreakdown";
+import RecentActivities from './RecentActivities';
 import './DashboardContent.css';
-const formatPrice = value => new Intl.NumberFormat('en-IN',{style:'currency',currency:'INR',maximumFractionDigits:0}).format(value || 0);
-export default function DashboardContent({summary,agents,activities}) {
-const activitiesRef=useRef(null);
-const scrollActivities=direction=>activitiesRef.current?.scrollBy({left:direction * Math.max(280,activitiesRef.current.clientWidth*0.7),behavior:'smooth'});
+const formatPrice = formatINR;
+export default function DashboardContent({summary,agents,activities,breakdownPeriod,onBreakdownPeriodChange,onViewAgents}) {
 return (<>        {/* ANALYTICS */}
         <section className="analytics-grid">
           <div className="panel revenue-panel">
@@ -63,115 +63,32 @@ return (<>        {/* ANALYTICS */}
 
         {/* BREAKDOWN AND AGENTS */}
         <section className="middle-grid">
-          <div className="panel breakdown-panel">
-            <div className="section-heading">
-              <h2>Property Breakdown</h2>
-              <span className="filter-label">This Week⌄</span>
-            </div>
-
-            <div className="chart-legend">
-              <span><i className="legend-rent" /> Rent</span>
-              <span><i className="legend-sell" /> Sell</span>
-            </div>
-
-            <div className="bar-chart">
-              <div className="bar-y-axis">
-                {[120, 100, 80, 60, 40, 20, 0].map((value) => (
-                  <span key={value}>{value}</span>
-                ))}
-              </div>
-
-              <div className="bar-chart-content">
-                <div className="bar-grid">
-                  {summary.weekly.map((item) => (
-                    <div className="bar-group" key={item.day}>
-                      <div className="bars">
-                        <div
-                          className="bar rent-bar"
-                          style={{ height: `${(item.rent / 120) * 100}%` }}
-                        />
-                        <div
-                          className={`bar sell-bar ${item.day === "Wed" ? "highlight-bar" : ""}`}
-                          style={{ height: `${(item.sell / 120) * 100}%` }}
-                        />
-                      </div>
-                      <span>{item.day}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            <p className="chart-caption">Property Sale & Rentout Data</p>
-          </div>
+          <PropertyBreakdown breakdown={summary.breakdown} period={breakdownPeriod} onPeriodChange={onBreakdownPeriodChange} />
 
           <div className="panel agents-panel" id="agents">
             <div className="section-heading">
               <h2>Top Agent</h2>
-              <a href="#agents">View All</a>
+              <button type="button" className="eh-text-action" onClick={onViewAgents}>View All</button>
             </div>
 
             <div className="agent-list">
-              {agents.map((agent, index) => (
+              {agents.slice(0,5).map((agent, index) => (
                 <div className="agent-row" key={agent.name}>
                   <div className={`agent-avatar avatar-${index}`}>
-                    {agent.avatar}
+                    {agent.avatar || agent.name.slice(0,2).toUpperCase()}
                   </div>
                   <div className="agent-info">
                     <strong>{agent.name}</strong>
                     <span>{agent.sales} Sell & {agent.rent} Rent</span>
                   </div>
-                  <b>{agent.amount}</b>
+                  <b>{formatPrice(agent.totalAmount)}</b>
                 </div>
               ))}
+              {!agents.length && <p className="empty-message">No agents added yet.</p>}
             </div>
           </div>
         </section>
 
-        {/* RECENT ACTIVITIES */}
-        <section className="activities-section" id="activities">
-          <div className="section-heading">
-            <h2>Recent Activities</h2>
-            <div className="activity-controls" aria-label="Recent activities horizontal navigation">
-              <button type="button" onClick={() => scrollActivities(-1)} aria-label="Scroll activities left">‹</button>
-              <button type="button" onClick={() => scrollActivities(1)} aria-label="Scroll activities right">›</button>
-            </div>
-          </div>
-
-          <div className="table-wrapper" ref={activitiesRef} tabIndex={0} aria-label="Recent activities table; scroll horizontally">
-            <table className="activity-table">
-              <thead>
-                <tr>
-                  <th>No. ↕</th>
-                  <th>Type ↕</th>
-                  <th>Name ↕</th>
-                  <th>Agent Name ↕</th>
-                  <th>Property Type ↕</th>
-                  <th>City ↕</th>
-                  <th>Availability ↕</th>
-                  <th>Price ↕</th>
-                </tr>
-              </thead>
-              <tbody>
-                {activities.map((activity) => (
-                  <tr key={activity._id}>
-                    <td>{activity._id?.slice(-6)}</td>
-                    <td>
-                      <span className={`type-tag ${activity.type.toLowerCase()}`}>
-                        {activity.type}
-                      </span>
-                    </td>
-                    <td>{activity.name}</td>
-                    <td>{activity.agent}</td>
-                    <td>{activity.property}</td>
-                    <td>{activity.city}</td>
-                    <td>{activity.availability}</td>
-                    <td>{activity.price}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </section>
+        <RecentActivities activities={activities} />
 </>);
 }

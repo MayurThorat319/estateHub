@@ -8,6 +8,7 @@ const blank = {
   type: "Apartment",
   status: "Available",
   image: "",
+  agentId: "",
 };
 export default function PropertyForm({
   initial,
@@ -16,13 +17,14 @@ export default function PropertyForm({
   busy,
   error,
   activeView,
+  agents = [],
 }) {
   const [data, setData] = useState(blank);
   useEffect(
     () =>
       setData(
         initial
-          ? { ...blank, ...initial }
+          ? { ...blank, ...initial, agentId: initial.agentId || "" }
           : { ...blank, listing: activeView === "Rent" ? "Rent" : "Sell" },
       ),
     [initial, activeView],
@@ -76,6 +78,10 @@ export default function PropertyForm({
           placeholder="Price in INR"
           required
         />
+        <select name="agentId" value={data.agentId || ""} onChange={change} aria-label="Assigned agent (optional)">
+          <option value="">No agent assigned (optional)</option>
+          {agents.map((agent) => <option key={agent._id} value={agent._id}>{agent.name}</option>)}
+        </select>
         <select name="listing" value={data.listing} onChange={change}>
           <option>Sell</option>
           <option>Rent</option>

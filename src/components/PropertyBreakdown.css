@@ -1,0 +1,40 @@
+.breakdown-period {
+  /* color: var(--text, #171526); */
+  /* background: var(--background, #fff); */
+  border: 1px solid #dedbea;
+  border-radius: 8px;
+  padding: 8px 10px;
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+  max-width: 145px;
+}
+.breakdown-period:focus-visible {
+  outline: 2px solid #7b52cf;
+  outline-offset: 2px;
+}
+.property-breakdown-chart .bar-group {
+  flex: 1;
+  width: auto;
+  min-width: 0;
+}
+.property-breakdown-chart .bar-group > span {
+  font-size: clamp(8px, 0.8vw, 10px);
+  white-space: nowrap;
+}
+.property-breakdown-chart .bar {
+  min-height: 0;
+  transition: height 0.25s ease;
+}
+.property-breakdown-chart .bar-y-axis {
+  min-width: 25px;
+  text-align: right;
+}
+@media (max-width: 420px) {
+  .breakdown-heading {
+    flex-wrap: wrap;
+  }
+  .breakdown-period {
+    max-width: 130px;
+  }
+}

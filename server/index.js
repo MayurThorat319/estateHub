@@ -6,11 +6,16 @@ import { rateLimit } from "express-rate-limit";
 import { connectDB } from "./config/db.js";
 import resourcesRouter from "./routes/resources.js";
 import statsRouter from "./routes/stats.js";
+import operationsRouter from "./routes/operations.js";
 const app = express();
 const origin = process.env.CLIENT_ORIGIN || "http://localhost:5173";
 app.use(helmet());
-app.use(cors({ origin: origin.split(",").map((x) => x.trim()) }));
-app.use(express.json({ limit: "100kb" }));
+app.use(cors({
+  origin: [
+    "http://localhost:5173",
+    "http://localhost:5174"
+  ]
+}));app.use(express.json({ limit: "100kb" }));
 app.use(
   "/api",
   rateLimit({
@@ -22,6 +27,7 @@ app.use(
 );
 app.get("/api/health", (req, res) => res.json({ data: { status: "ok" } }));
 app.use("/api/stats", statsRouter);
+app.use("/api", operationsRouter);
 app.use("/api", resourcesRouter);
 app.use((req, res) => res.status(404).json({ message: "Not found" }));
 app.use((err, req, res, next) => {

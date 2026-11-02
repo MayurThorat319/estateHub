@@ -33,6 +33,7 @@ export default function App() {
     [appointments, setAppointments] = useState([]),
     [notifications, setNotifications] = useState([]),
     [summary, setSummary] = useState(emptySummary);
+  const [breakdownPeriod, setBreakdownPeriod] = useState("week");
   const [loading, setLoading] = useState(true),
     [apiError, setApiError] = useState(""),
     [busy, setBusy] = useState(false),
@@ -49,13 +50,13 @@ export default function App() {
       const [p, a, ac, e, m, ap, n, st] = await Promise.all(
         [
           "/properties",
-          "/agents",
+          "/top-agents",
           "/activities",
           "/enquiries",
           "/messages",
           "/appointments",
           "/notifications",
-          "/stats",
+          `/stats?period=${breakdownPeriod}`,
         ].map((path) => api.get(path)),
       );
       setProjects(p);
@@ -72,7 +73,7 @@ export default function App() {
     } finally {
       setLoading(false);
     }
-  }, []);
+  }, [breakdownPeriod]);
   useEffect(() => {
     refresh();
   }, [refresh]);
@@ -162,6 +163,7 @@ export default function App() {
           <PropertyForm
             initial={editing}
             activeView={activeView}
+            agents={agents}
             onSave={saveProject}
             onClose={() => {
               setShowForm(false);
@@ -184,7 +186,10 @@ export default function App() {
           <>
             <DashboardContent
               summary={summary}
+              breakdownPeriod={breakdownPeriod}
+              onBreakdownPeriodChange={setBreakdownPeriod}
               agents={agents}
+              onViewAgents={() => setActiveView("Agent")}
               activities={activities}
             />
           </>
@@ -206,6 +211,7 @@ export default function App() {
         onEditProject={editProject}
         onMarkRead={markRead}
         activeView={activeView}
+        onRefresh={refresh}
       />
     </div>
   );
