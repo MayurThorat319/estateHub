@@ -1,10 +1,11 @@
 const BASE = (
-  import.meta.env.VITE_API_URL || "http://localhost:5000/api"
+  "/api"
 ).replace(/\/$/, "");
 async function request(path, options = {}) {
   let response;
   try {
     response = await fetch(`${BASE}${path}`, {
+      cache: "no-store",
       ...options,
       headers: {
         "Content-Type": "application/json",

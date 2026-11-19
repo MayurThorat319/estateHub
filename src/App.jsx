@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Sidebar from "./components/Sidebar";
 import Topbar from "./components/Topbar";
 import PropertyForm from "./components/PropertyForm";
@@ -45,7 +45,9 @@ export default function App() {
     [openUtility, setOpenUtility] = useState(null),
     [compactRows, setCompactRows] = useState(false),
     [showPrices, setShowPrices] = useState(true);
+  const refreshVersion = useRef(0);
   const refresh = useCallback(async () => {
+    const version = ++refreshVersion.current;
     try {
       const [p, a, ac, e, m, ap, n, st] = await Promise.all(
         [
@@ -59,6 +61,7 @@ export default function App() {
           `/stats?period=${breakdownPeriod}`,
         ].map((path) => api.get(path)),
       );
+      if (version !== refreshVersion.current) return;
       setProjects(p);
       setAgents(a);
       setActivities(ac);
@@ -69,13 +72,21 @@ export default function App() {
       setSummary(st);
       setApiError("");
     } catch (e) {
-      setApiError(e.message);
+      if (version === refreshVersion.current) setApiError(e.message);
     } finally {
-      setLoading(false);
+      if (version === refreshVersion.current) setLoading(false);
     }
   }, [breakdownPeriod]);
   useEffect(() => {
     refresh();
+    const update = () => { if (document.visibilityState === "visible") refresh(); };
+    const timer = window.setInterval(update, 30_000);
+    window.addEventListener("focus", update);
+    return () => {
+      ++refreshVersion.current;
+      window.clearInterval(timer);
+      window.removeEventListener("focus", update);
+    };
   }, [refresh]);
   const filteredProjects = useMemo(
     () =>
